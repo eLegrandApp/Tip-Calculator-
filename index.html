@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tip Calculator</h1>
+        <div class="form-group">
+            <label for="billAmount">Bill Amount ($):</label>
+            <input type="number" id="billAmount" placeholder="Enter bill amount">
+        </div>
+        <div class="form-group">
+            <label for="tipPercentage">Tip Percentage (%):</label>
+            <input type="number" id="tipPercentage" placeholder="Enter tip percentage">
+        </div>
+        <button class="btn" onclick="calculateTip()">Calculate Tip</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateTip() {
+            const billAmount = parseFloat(document.getElementById("billAmount").value);
+            const tipPercentage = parseFloat(document.getElementById("tipPercentage").value);
+
+            if (isNaN(billAmount) || isNaN(tipPercentage) || billAmount <= 0 || tipPercentage < 0) {
+                document.getElementById("result").innerText = "Please enter valid inputs.";
+                return;
+            }
+
+            const tipAmount = (billAmount * tipPercentage) / 100;
+            const totalAmount = billAmount + tipAmount;
+
+            document.getElementById("result").innerHTML = `
+                Tip Amount: $${tipAmount.toFixed(2)}<br>
+                Total Amount: $${totalAmount.toFixed(2)}
+            `;
+        }
+    </script>
+</body>
+</html>
